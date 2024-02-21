@@ -40,7 +40,19 @@
 #define TIMEOUT_HEATING 1
 #define TIMEOUT_COOLING 2 
 
+//usato per invertire i attivi basso
+//#define INVERTI_RELE 1
 
+#ifdef INVERTI_RELE
+  #define RELE_OFF_ HIGH
+  #define RELE_ON_  LOW
+#else
+  #define RELE_OFF_ LOW
+  #define RELE_ON_  HIGH
+#endif
+
+void RELE_TEST_END(int value);
+void RELE_COOLING(int value);
 
 template <unsigned int exponent>
 struct Pow10 {

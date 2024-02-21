@@ -9,7 +9,7 @@
 
 
 numeroCicli::numeroCicli(){
-  Cicli = 10;
+  Cicli = 50000;
 }
 
 

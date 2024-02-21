@@ -20,6 +20,20 @@ uint8_t key;
 }
 
 
+void RELE_TEST_END(int value)
+{
+   digitalWrite(TEST_ENDPIN, value); 
+   Serial.print("TESTEND:");
+   Serial.println(value);
+}
+
+void RELE_COOLING(int value)
+{
+   digitalWrite(COOLING_PIN, value);
+   Serial.print("COOLING_PIN:");
+   Serial.println(value);
+}
+
 
   //if (analogKey < 60) {
   //  lcd.print("Destra       ");  

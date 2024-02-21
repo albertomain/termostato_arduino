@@ -32,7 +32,11 @@ void setup() {
  // lcd.begin(16,2); // Dimensioni del display LCD
  // lcd.print("www.14core.com"); // Visualizza il testo sul display
   //lcd.setCursor(0,1); // Imposta il cursore (colonna,riga)
-  lcd.print("IMQ RELE TEST");
+    lcd.begin(16, 2);
+  lcd.print("IMQ THERMOSTAT");
+  lcd.setCursor(0,1);
+  lcd.print("TEST");
+  
   delay(1000);
   lcd.clear();
   lcd.setCursor(0,0);
@@ -93,7 +97,7 @@ void loop() {
     break;
   }    
 
- Serial.print(Errore);
+  //Serial.print(Errore);
   lcd.setCursor(8,1);
   switch (Errore)
   {
@@ -185,11 +189,11 @@ void loop() {
 
 
      
-      Serial.print(" ");
-      Serial.print(CycleTest.getCycleTick());
-      Serial.print(" ");
-      Serial.println(TimeOutOff.getTimeOut());
-  myDebug.MyPrint();
+      //Serial.print(" ");
+      //Serial.print(CycleTest.getCycleTick());
+      //Serial.print(" ");
+     // Serial.println(TimeOutOff.getTimeOut());
+  //myDebug.MyPrint();
 
   delay(100);
 

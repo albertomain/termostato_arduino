@@ -22,7 +22,9 @@ unsigned char CycleTests::getStato()
 void CycleTests::Start(void)
 {
   TimerRele_StalloOff = TIMEOUTSTALLO_OFF;
-  digitalWrite(TEST_ENDPIN, LOW); 
+  //digitalWrite(TEST_ENDPIN, LOW); 
+  RELE_TEST_END(RELE_OFF_);
+
   StatoMacchina(HEATING);
   CycleTick = 0;
 }
@@ -40,27 +42,42 @@ CycleTests::StatoMacchina(byte NuovoStato)
   if (NuovoStato!=DO_NOTHING) Stato = NuovoStato;
   switch(Stato){
     case TUTTO_SPENTO:
-       digitalWrite(TEST_ENDPIN, LOW); 
+       //digitalWrite(TEST_ENDPIN, LOW); 
+       RELE_TEST_END(RELE_OFF_);
+
        digitalWrite(HEATING_PIN, LOW);  
-       digitalWrite(COOLING_PIN, LOW);
+
+       //digitalWrite(COOLING_PIN, LOW);
+       RELE_COOLING(RELE_OFF_);
+
+
        TimerRele_StalloOff = TIMEOUTSTALLO_OFF;
     break;
     case SPEGNIMENTO_STALLO:
-       digitalWrite(TEST_ENDPIN, HIGH); 
+       //digitalWrite(TEST_ENDPIN, HIGH); 
+       RELE_TEST_END(RELE_ON_);
+
        digitalWrite(HEATING_PIN, LOW);  
-       digitalWrite(COOLING_PIN, LOW);
+
+       //digitalWrite(COOLING_PIN, LOW);
+       RELE_COOLING(RELE_OFF_);
     
        if (TimerRele_StalloOff)  TimerRele_StalloOff --;
        if (TimerRele_StalloOff == 0) Stato = TUTTO_SPENTO;
     break;
     case HEATING:
        digitalWrite(HEATING_PIN, HIGH);  //Scalda
-       digitalWrite(COOLING_PIN, LOW);
+
+       //digitalWrite(COOLING_PIN, LOW);
+       RELE_COOLING(RELE_OFF_);
      
     break;
     case COOLING:
         digitalWrite(HEATING_PIN, LOW);  //Raffredda
-        digitalWrite(COOLING_PIN, HIGH);  
+
+        //digitalWrite(COOLING_PIN, HIGH);
+        RELE_COOLING(RELE_ON_);
+  
       
     break;
   }

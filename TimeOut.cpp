@@ -10,7 +10,7 @@
 
 TimeOut::TimeOut(){
    minimo_uno();
-   TimeOut = 30; //inizializzo
+   TimeOut = 150; //inizializzo
 }
 
 TimeOut::posPrint(uint8_t X, uint8_t Y) {
